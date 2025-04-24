@@ -41,3 +41,6 @@ class Enrollment(db.Model): #client registration table
     enrollment_date = db.Column(db.DateTime, default=datetime.now(datetime.timezone.utc))
     program = db.relationship('Program', backref='enrollments') #Multiple enrollments to a single program
 
+# Creaation of all the actual tables
+with app.app_context():
+    db.create_all()
