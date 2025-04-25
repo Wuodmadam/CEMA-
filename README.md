@@ -28,3 +28,5 @@ clone the repo and run on a localhost server preferablly port 5000.
 run the app.py then follow the link.
 
 # HERE IS A LIVE DEMO OF THE RUNNING APPLICATION
+
+![live demo](HealthSync solutions - DEMO VIDEO.mp4)
