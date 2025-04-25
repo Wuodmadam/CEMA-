@@ -27,6 +27,6 @@ clone the repo and run on a localhost server preferablly port 5000.
 
 run the app.py then follow the link.
 
-# HERE IS A LIVE DEMO OF THE RUNNING APPLICATION
+# live Downloadable video Demo/presentation
 
-![live demo](HealthSync solutions - DEMO VIDEO.mp4)
+![live demo](https://github.com/Wuodmadam/CEMA-/raw/refs/heads/master/HealthSync%20solutions%20-%20DEMO%20VIDEO%20(1).mp4)
