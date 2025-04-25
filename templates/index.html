@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthSync solutions</title>
+    
+</head>
+<body>
+    <h1>HealthSync Solutions</h1>
+
+    <!-- PROGRAM -->
+    <div class="section">
+        <h2>Create Health Program</h2>
+        <form id="program-form">
+            <label for="program-name">Program Name:</label>
+            <input type="text" id="program-name" required>
+            <label for="program-description">Description:</label>
+            <input type="text" id="program-description">
+            <button type="submit">Create Program</button>
+            <div class="error" id="program-error"></div>
+        </form>
+    </div>
+
+    <!-- CLIENT REGISTRATION -->
+    <div class="section">
+        <h2>Register Client</h2>
+        <form id="client-form">
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name" required>
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name" required>
+            <label for="dob">Date of Birth (YYYY-MM-DD):</label>
+            <input type="text" id="dob" placeholder="YYYY-MM-DD" required>
+            <label for="gender">Gender:</label>
+            <select id="gender">
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <label for="contact-number">Contact Number:</label>
+            <input type="text" id="contact-number">
+            <button type="submit">Register Client</button>
+            <div class="error" id="client-error"></div>
+        </form>
+    </div>
+
+    <!-- CLIENT ENROLLMENT -->
+    <div class="section">
+        <h2>Enroll Client in Program</h2>
+        <form id="enrollment-form">
+            <label for="enroll-client-id">Client ID:</label>
+            <input type="number" id="enroll-client-id" required>
+            <label for="program-id">Program ID:</label>
+            <input type="number" id="program-id" required>
+            <button type="submit">Enroll Client</button>
+            <div class="error" id="enrollment-error"></div>
+        </form>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="section">
+        <h2>Search Clients</h2>
+        <form id="search-form">
+            <label for="search-query">Search by Name or Contact:</label>
+            <input type="text" id="search-query">
+            <button type="submit">Search</button>
+            <div class="error" id="search-error"></div>
+        </form>
+        <div id="search-results"></div>
+    </div>
+
+    <!-- VIEW THE PROFILE -->
+    <div class="section">
+        <h2>View Client Profile</h2>
+        <form id="profile-form">
+            <label for="profile-client-id">Client ID:</label>
+            <input type="number" id="profile-client-id" required>
+            <button type="submit">View Profile</button>
+            <div class="error" id="profile-error"></div>
+        </form>
+        <div id="client-profile"></div>
+    </div>
+
+</body>
+</html>
