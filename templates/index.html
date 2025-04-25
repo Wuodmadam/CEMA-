@@ -192,6 +192,42 @@
         </form>
         <div id="client-profile"></div>
     </div>
+    <script>
+         // Error function script
+         function showError(elementId, message) {
+            document.getElementById(elementId).textContent = message;
+        }
+
+        // function to clear errors
+        function clearError(elementId) {
+            document.getElementById(elementId).textContent = '';
+        }
+
+        // PROGRAM CREATION
+        document.getElementById('program-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            clearError('program-error');
+            const name = document.getElementById('program-name').value;
+            const description = document.getElementById('program-description').value;
+            try {
+                const response = await fetch('/api/programs', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, description })
+                });
+                const result = await response.json();
+                if (response.ok) {
+                    alert(`Program created: ${result.name} (ID: ${result.id})`);
+                    document.getElementById('program-form').reset();
+                } else {
+                    showError('program-error', result.error || 'Failed to create program');
+                }
+            } catch (error) {
+                showError('program-error', 'Network error: Unable to connect to server');
+            }
+        });
+
+    </script>
 
 </body>
 </html>
