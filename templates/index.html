@@ -226,6 +226,107 @@
                 showError('program-error', 'Network error: Unable to connect to server');
             }
         });
+         // CLIENT REGISTRATION
+         document.getElementById('client-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            clearError('client-error');
+            const first_name = document.getElementById('first-name').value;
+            const last_name = document.getElementById('last-name').value;
+            const date_of_birth = document.getElementById('dob').value;
+            const gender = document.getElementById('gender').value;
+            const contact_number = document.getElementById('contact-number').value;
+            try {
+                const response = await fetch('/api/clients', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ first_name, last_name, date_of_birth, gender, contact_number })
+                });
+                const result = await response.json();
+                if (response.ok) {
+                    alert(`Client registered: ${result.first_name} ${result.last_name} (ID: ${result.id})`);
+                    document.getElementById('client-form').reset();
+                } else {
+                    showError('client-error', result.error || 'Failed to register client');
+                }
+            } catch (error) {
+                showError('client-error', 'Network error: Unable to connect to server');
+            }
+        });
+
+        // CLIENT ENROLLMENT
+        document.getElementById('enrollment-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            clearError('enrollment-error');
+            const client_id = parseInt(document.getElementById('enroll-client-id').value);
+            const program_id = parseInt(document.getElementById('program-id').value);
+            try {
+                const response = await fetch('/api/enrollments', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ client_id, program_id })
+                });
+                const result = await response.json();
+                if (response.ok) {
+                    alert(`Client ${client_id} enrolled in program ${program_id}`);
+                    document.getElementById('enrollment-form').reset();
+                } else {
+                    showError('enrollment-error', result.error || 'Failed to enroll client');
+                }
+            } catch (error) {
+                showError('enrollment-error', 'Network error: Unable to connect to server');
+            }
+        });
+
+        // SEARCH
+        document.getElementById('search-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            clearError('search-error');
+            const query = document.getElementById('search-query').value;
+            try {
+                const response = await fetch(`/api/clients/search?q=${encodeURIComponent(query)}`);
+                const clients = await response.json();
+                const resultsDiv = document.getElementById('search-results');
+                if (clients.length === 0) {
+                    resultsDiv.innerHTML = '<p>No clients found.</p>';
+                } else {
+                    resultsDiv.innerHTML = '<h3>Search Results:</h3>' + clients.map(client => `
+                        <p>ID: ${client.id}, Name: ${client.first_name} ${client.last_name}, Contact: ${client.contact_number || 'N/A'}</p>
+                    `).join('');
+                }
+            } catch (error) {
+                showError('search-error', 'Network error: Unable to fetch results');
+            }
+        });
+
+        // SHOW PROFILE
+        document.getElementById('profile-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            clearError('profile-error');
+            const client_id = parseInt(document.getElementById('profile-client-id').value);
+            try {
+                const response = await fetch(`/api/clients/${client_id}`);
+                const client = await response.json();
+                const profileDiv = document.getElementById('client-profile');
+                if (response.ok) {
+                    profileDiv.innerHTML = `
+                        <h3>Client Profile</h3>
+                        <p><strong>ID:</strong> ${client.id}</p>
+                        <p><strong>Name:</strong> ${client.first_name} ${client.last_name}</p>
+                        <p><strong>Date of Birth:</strong> ${client.date_of_birth}</p>
+                        <p><strong>Gender:</strong> ${client.gender || 'N/A'}</p>
+                        <p><strong>Contact:</strong> ${client.contact_number || 'N/A'}</p>
+                        <p><strong>Enrolled Programs:</strong></p>
+                        <ul>
+                            ${client.enrollments.map(e => `<li>${e.program_name} (Enrolled: ${e.enrollment_date})</li>`).join('') || '<li>None</li>'}
+                        </ul>
+                    `;
+                } else {
+                    profileDiv.innerHTML = `<p class="error">${client.error}</p>`;
+                }
+            } catch (error) {
+                showError('profile-error', 'Network error: Unable to fetch profile');
+            }
+        });
 
     </script>
 
