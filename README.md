@@ -5,9 +5,22 @@ This is a simple health information system to manage clients and health programs
 It allows medics to crete health programs like TB,MALARIA & HIV,regiter new clients,
 enroll them to programs ,search for clients ,and view profiles of the enrolled clients.Client profiles can also be accesed via an api for intergration with existing systems
 
+# technologies used
+
+# Python
+# flask framework
+# SQLAlchemy
+
+![create program](https://github.com/Wuodmadam/CEMA-/blob/master/create%20program.png)
+
+![Search client details via api](https://github.com/Wuodmadam/CEMA-/blob/master/client%20search.png)
+
+![client registration page](https://github.com/Wuodmadam/CEMA-/blob/master/client%20registration.png)
+
+
 ![view registered client details](https://github.com/Wuodmadam/CEMA-/blob/master/Screenshot%202025-04-25%20222505.png) 
 
-# Installation
+# INSTALLATION
 
 WINDOWS 
 
