@@ -44,3 +44,8 @@ class Enrollment(db.Model): #client registration table
 # Creaation of all the actual tables
 with app.app_context():
     db.create_all()
+    
+#Route to render my html for frontend/visual
+@app.route('/')
+def index():
+    return render_template('index.html')
