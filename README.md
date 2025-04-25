@@ -12,21 +12,21 @@ enroll them to programs ,search for clients ,and view profiles of the enrolled c
 WINDOWS 
 
 Ensure python is installed in your device and create a virtual environment
-'''bash
-python -m venv projectname
+
+'python -m venv projectname'
 
 Install flask library in the venv
-'''bash
-pip install flask
+
+'pip install flask'
 
 install  Flask -SQLAlchemy for the DB 
-'''bash
-pip install Flask -SQLAlchemy
+
+'pip install Flask -SQLAlchemy'
 
 clone the repo and run on a localhost server preferablly port 5000.
 
 run the app.py then follow the link.Her is the code 
-'''python
+<pre>'''python
 from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -199,7 +199,7 @@ def get_client_profile(client_id):
     })
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True)'''</pre>
 
-    
+
 
